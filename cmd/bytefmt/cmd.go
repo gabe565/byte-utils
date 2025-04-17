@@ -18,8 +18,9 @@ import (
 
 func New(opts ...cobrax.Option) *cobra.Command {
 	cmd := &cobra.Command{
-		Use:  "bytefmt [number]...",
-		RunE: run,
+		Use:   "bytefmt [number]...",
+		Short: "Pretty-print bytes",
+		RunE:  run,
 
 		SilenceErrors: true,
 	}

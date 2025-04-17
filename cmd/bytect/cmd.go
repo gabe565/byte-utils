@@ -16,8 +16,9 @@ import (
 
 func New(opts ...cobrax.Option) *cobra.Command {
 	cmd := &cobra.Command{
-		Use:  "bytect [file]...",
-		RunE: run,
+		Use:   "bytect [file]...",
+		Short: "Pretty-print the size of files or stdin",
+		RunE:  run,
 
 		SilenceErrors: true,
 	}
