@@ -6,11 +6,11 @@ type ctxKey uint8
 
 const configKey ctxKey = iota
 
-func NewContext(ctx context.Context, conf *Config) context.Context {
+func NewContext[T Config](ctx context.Context, conf *T) context.Context {
 	return context.WithValue(ctx, configKey, conf)
 }
 
-func FromContext(ctx context.Context) (*Config, bool) {
-	conf, ok := ctx.Value(configKey).(*Config)
+func FromContext[T Config](ctx context.Context) (*T, bool) {
+	conf, ok := ctx.Value(configKey).(*T)
 	return conf, ok
 }

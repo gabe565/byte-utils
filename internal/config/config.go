@@ -2,28 +2,46 @@ package config
 
 import "gabe565.com/utils/bytefmt"
 
-func New() *Config {
-	return &Config{
-		Precision: 2,
-	}
+type Config interface {
+	Base | Bytect | Bytefmt
 }
 
-type Config struct {
+func NewShared() *Base {
+	return &Base{Precision: 2}
+}
+
+type Base struct {
 	Decimal   bool
 	Precision int
 	Space     bool
-	Invert    bool
 }
 
-func (c *Config) NewEncoder() *bytefmt.Encoder {
+func (c *Base) NewEncoder() *bytefmt.Encoder {
 	return bytefmt.NewEncoder().
 		SetPrecision(c.Precision).
 		SetUseSpace(c.Space)
 }
 
-func (c *Config) NewEncodeFunc() func(int64) string {
+func (c *Base) NewEncodeFunc() func(int64) string {
 	if c.Decimal {
 		return c.NewEncoder().EncodeDecimal
 	}
 	return c.NewEncoder().EncodeBinary
+}
+
+func NewBytect() *Bytect {
+	return &Bytect{Base: NewShared()}
+}
+
+type Bytect struct {
+	*Base
+}
+
+func NewBytefmt() *Bytefmt {
+	return &Bytefmt{Base: NewShared()}
+}
+
+type Bytefmt struct {
+	*Base
+	Invert bool
 }

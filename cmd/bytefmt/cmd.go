@@ -24,8 +24,8 @@ func New(opts ...cobrax.Option) *cobra.Command {
 		SilenceErrors: true,
 	}
 
-	cfg := config.New()
-	cfg.RegisterFlags(cmd, true)
+	cfg := config.NewBytefmt()
+	cfg.RegisterFlags(cmd)
 	cmd.SetContext(config.NewContext(context.Background(), cfg))
 
 	for _, opt := range opts {
@@ -35,7 +35,7 @@ func New(opts ...cobrax.Option) *cobra.Command {
 }
 
 func run(cmd *cobra.Command, args []string) error {
-	cfg := config.Load(cmd)
+	cfg := config.Load[config.Bytefmt](cmd)
 	cmd.SilenceUsage = true
 
 	if len(args) == 0 {

@@ -2,8 +2,8 @@ package config
 
 import "github.com/spf13/cobra"
 
-func Load(cmd *cobra.Command) *Config {
-	cfg, ok := FromContext(cmd.Context())
+func Load[T Config](cmd *cobra.Command) *T {
+	cfg, ok := FromContext[T](cmd.Context())
 	if !ok {
 		panic("context missing config")
 	}
