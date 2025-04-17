@@ -68,12 +68,21 @@ func run(cmd *cobra.Command, args []string) error {
 			return cmd.Usage()
 		}
 
-		n, err := io.Copy(io.Discard, os.Stdin)
+		fileOut := io.Discard
+		if cfg.Tee {
+			fileOut = os.Stdout
+		}
+
+		n, err := io.Copy(fileOut, os.Stdin)
 		if err != nil {
 			return err
 		}
 
-		fmt.Println(encode(n))
+		encodeOut := os.Stdout
+		if cfg.Tee {
+			encodeOut = os.Stderr
+		}
+		_, _ = fmt.Fprintln(encodeOut, encode(n))
 	}
 	return exitErr
 }

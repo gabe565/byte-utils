@@ -7,6 +7,7 @@ const (
 	FlagSpace     = "space"
 	FlagPrecision = "precision"
 	FlagInvert    = "invert"
+	FlagTee       = "tee"
 )
 
 func (c *Base) RegisterFlags(cmd *cobra.Command) {
@@ -18,6 +19,8 @@ func (c *Base) RegisterFlags(cmd *cobra.Command) {
 
 func (c *Bytect) RegisterFlags(cmd *cobra.Command) {
 	c.Base.RegisterFlags(cmd)
+	fs := cmd.Flags()
+	fs.BoolVarP(&c.Tee, FlagTee, "t", c.Tee, "Tee input to stdout")
 }
 
 func (c *Bytefmt) RegisterFlags(cmd *cobra.Command) {
