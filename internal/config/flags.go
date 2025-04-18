@@ -14,7 +14,7 @@ func (c *Base) RegisterFlags(cmd *cobra.Command) {
 	fs := cmd.Flags()
 	fs.BoolVarP(&c.Decimal, FlagDecimal, "d", c.Decimal, "Use decimal instead of binary")
 	fs.IntVarP(&c.Precision, FlagPrecision, "p", c.Precision, "Number of decimal places to use")
-	fs.BoolVarP(&c.Space, FlagSpace, "s", c.Space, "Remove the space between the number and the unit")
+	fs.BoolVarP(&c.Space, FlagSpace, "s", c.Space, "Add a space between the number and the unit")
 }
 
 func (c *Bytect) RegisterFlags(cmd *cobra.Command) {
