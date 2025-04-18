@@ -69,8 +69,10 @@ func run(cmd *cobra.Command, args []string) error {
 		}
 
 		fileOut := io.Discard
-		if cfg.Tee {
+		encodeOut := os.Stdout
+		if !termx.IsTerminal(os.Stdout) {
 			fileOut = os.Stdout
+			encodeOut = os.Stderr
 		}
 
 		n, err := io.Copy(fileOut, os.Stdin)
@@ -78,10 +80,6 @@ func run(cmd *cobra.Command, args []string) error {
 			return err
 		}
 
-		encodeOut := os.Stdout
-		if cfg.Tee {
-			encodeOut = os.Stderr
-		}
 		_, _ = fmt.Fprintln(encodeOut, encode(n))
 	}
 	return exitErr
