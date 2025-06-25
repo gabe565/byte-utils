@@ -7,8 +7,8 @@ import (
 	"os"
 	"text/tabwriter"
 
-	"gabe565.com/bytefmt/internal/config"
-	"gabe565.com/bytefmt/internal/exiterr"
+	"gabe565.com/byte-utils/internal/config"
+	"gabe565.com/byte-utils/internal/exiterr"
 	"gabe565.com/utils/cobrax"
 	"gabe565.com/utils/termx"
 	"github.com/spf13/cobra"

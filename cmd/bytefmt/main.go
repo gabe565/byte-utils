@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"gabe565.com/bytefmt/internal/exiterr"
+	"gabe565.com/byte-utils/internal/exiterr"
 )
 
 func main() {

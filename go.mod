@@ -1,4 +1,4 @@
-module gabe565.com/bytefmt
+module gabe565.com/byte-utils
 
 go 1.24.2
 
