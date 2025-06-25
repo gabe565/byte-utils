@@ -14,7 +14,7 @@ go install gabe565.com/byte-utils/cmd/bytefmt@latest
 
 ### Usage
 
-Accepts one or more parameters and parses or formats the value dynamically:
+Run the command with one or more byte size parameters.
 
 1. Raw size
     ```shell
@@ -34,7 +34,7 @@ Accepts one or more parameters and parses or formats the value dynamically:
 
 ## bytect
 
-An additional utility that pretty-prints file sizes or the size of data piped to stdin
+An additional utility that pretty-prints file sizes or the size of data piped to stdin.
 
 ### Installation
 
@@ -44,13 +44,22 @@ go install gabe565.com/byte-utils/cmd/bytect@latest
 
 ### Usage
 
+Run the command with a file, list of files, or in a pipe. If the tool detects stdout is a pipe, it will automatically pass the data through.
+
 1. Files
    ```shell
    $ bytect index.html
    1.23KiB  index.html
    ```
-2. Stdin
+2. Stdin with no stdout pipe
    ```shell
    $ curl -s example.com | bytect
    1.23KiB
+   ```
+3. Stdin with stdout pipe
+   ```shell
+   $ curl -s example.com | bytect > index.html
+   1.23KiB
+   $ ls -l index.html
+   -rw-r--r--  1 root  root  1256 Jun 25 12:19 index.html
    ```
