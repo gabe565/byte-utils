@@ -35,6 +35,7 @@ func NewBytect() *Bytect {
 
 type Bytect struct {
 	*Base
+	Stdout bool
 }
 
 func NewBytefmt() *Bytefmt {

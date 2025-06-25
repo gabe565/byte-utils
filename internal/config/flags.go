@@ -6,7 +6,7 @@ const (
 	FlagDecimal   = "decimal"
 	FlagSpace     = "space"
 	FlagPrecision = "precision"
-	FlagInvert    = "invert"
+	FlagStdout    = "stdout"
 )
 
 func (c *Base) RegisterFlags(cmd *cobra.Command) {
@@ -18,6 +18,8 @@ func (c *Base) RegisterFlags(cmd *cobra.Command) {
 
 func (c *Bytect) RegisterFlags(cmd *cobra.Command) {
 	c.Base.RegisterFlags(cmd)
+	fs := cmd.Flags()
+	fs.BoolVarP(&c.Stdout, FlagStdout, "c", c.Stdout, "Skips pipe detection and always prints data to stdout")
 }
 
 func (c *Bytefmt) RegisterFlags(cmd *cobra.Command) {

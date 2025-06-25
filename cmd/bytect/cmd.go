@@ -70,7 +70,7 @@ func run(cmd *cobra.Command, args []string) error {
 
 		fileOut := io.Discard
 		encodeOut := os.Stdout
-		if !termx.IsTerminal(os.Stdout) {
+		if cfg.Stdout || !termx.IsTerminal(os.Stdout) {
 			fileOut = os.Stdout
 			encodeOut = os.Stderr
 		}
