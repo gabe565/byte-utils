@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"io"
 	"os"
 	"strconv"
@@ -53,21 +52,21 @@ func run(cmd *cobra.Command, args []string) error {
 	}
 
 	encode := cfg.NewEncodeFunc()
-	var exitErr exiterr.ExitErr
+	var exitErr exiterr.ExitError
 	for _, arg := range args {
 		arg = strings.TrimSpace(arg)
 
 		if v, encodeErr := strconv.ParseInt(arg, 10, 64); encodeErr == nil {
-			fmt.Println(encode(v))
+			cmd.Println(encode(v))
 		} else {
 			v, decodeErr := bytefmt.Decode(arg)
 			if decodeErr != nil {
-				fmt.Println("bytefmt: input could not be encoded or decoded: encode: " + encodeErr.Error() + "; decode: " + decodeErr.Error())
+				cmd.PrintErrln(cmd.ErrPrefix(), "bytefmt: input could not be encoded or decoded: encode: "+encodeErr.Error()+"; decode: "+decodeErr.Error())
 				exitErr.Code = 1
 				continue
 			}
 
-			fmt.Println(v)
+			cmd.Println(v)
 		}
 	}
 

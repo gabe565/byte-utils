@@ -2,19 +2,19 @@ package main
 
 import (
 	"errors"
-	"fmt"
 	"os"
 
 	"gabe565.com/byte-utils/internal/exiterr"
 )
 
 func main() {
-	if err := New().Execute(); err != nil {
-		var exitErr exiterr.ExitErr
+	cmd := New()
+	if err := cmd.Execute(); err != nil {
+		var exitErr exiterr.ExitError
 		if errors.As(err, &exitErr) {
 			os.Exit(exitErr.Code)
 		}
-		fmt.Println(err)
+		cmd.PrintErrln(cmd.ErrPrefix(), err)
 		os.Exit(1)
 	}
 }

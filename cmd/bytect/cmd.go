@@ -39,7 +39,7 @@ func run(cmd *cobra.Command, args []string) error {
 	cmd.SilenceUsage = true
 	encode := cfg.NewEncodeFunc()
 
-	var exitErr exiterr.ExitErr
+	var exitErr exiterr.ExitError
 	if len(args) != 0 {
 		w := tabwriter.NewWriter(os.Stdout, 0, 0, 0, ' ', tabwriter.AlignRight)
 		for _, arg := range args {
@@ -50,7 +50,7 @@ func run(cmd *cobra.Command, args []string) error {
 
 			if stat.IsDir() {
 				exitErr.Code = 1
-				fmt.Println("bytect: " + arg + ": is a directory")
+				cmd.PrintErrln(cmd.ErrPrefix(), "bytect: "+arg+": is a directory")
 				continue
 			}
 

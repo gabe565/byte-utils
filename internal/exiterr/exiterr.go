@@ -2,10 +2,10 @@ package exiterr
 
 import "strconv"
 
-type ExitErr struct {
+type ExitError struct {
 	Code int
 }
 
-func (e ExitErr) Error() string {
+func (e ExitError) Error() string {
 	return "exit status " + strconv.Itoa(e.Code)
 }
