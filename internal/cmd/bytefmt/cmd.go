@@ -1,4 +1,4 @@
-package main
+package bytefmt
 
 import (
 	"context"
@@ -21,7 +21,8 @@ func New(opts ...cobrax.Option) *cobra.Command {
 		Short: "Pretty-print bytes",
 		RunE:  run,
 
-		SilenceErrors: true,
+		SilenceErrors:     true,
+		DisableAutoGenTag: true,
 	}
 
 	cfg := config.NewBytefmt()

@@ -4,11 +4,12 @@ import (
 	"errors"
 	"os"
 
+	"gabe565.com/byte-utils/internal/cmd/bytect"
 	"gabe565.com/byte-utils/internal/exiterr"
 )
 
 func main() {
-	cmd := New()
+	cmd := bytect.New()
 	if err := cmd.Execute(); err != nil {
 		var exitErr exiterr.ExitError
 		if errors.As(err, &exitErr) {

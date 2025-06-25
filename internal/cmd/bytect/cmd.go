@@ -1,4 +1,4 @@
-package main
+package bytect
 
 import (
 	"context"
@@ -20,7 +20,8 @@ func New(opts ...cobrax.Option) *cobra.Command {
 		Short: "Pretty-print the size of files or stdin",
 		RunE:  run,
 
-		SilenceErrors: true,
+		SilenceErrors:     true,
+		DisableAutoGenTag: true,
 	}
 
 	cfg := config.NewBytect()

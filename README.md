@@ -16,6 +16,10 @@ go install gabe565.com/byte-utils/cmd/bytefmt@latest
 
 Run the command with one or more byte size parameters.
 
+[View flag documentation](docs/bytefmt.md)
+
+#### Examples:
+
 1. Raw size
     ```shell
     $ bytefmt 1048576
@@ -45,6 +49,8 @@ go install gabe565.com/byte-utils/cmd/bytect@latest
 ### Usage
 
 Run the command with a file, list of files, or in a pipe. If the tool detects stdout is a pipe, it will automatically pass the data through.
+
+[View flag documentation](docs/bytect.md)
 
 1. Files
    ```shell
