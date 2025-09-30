@@ -6,6 +6,7 @@ const (
 	FlagDecimal   = "decimal"
 	FlagSpace     = "space"
 	FlagPrecision = "precision"
+	FlagInvert    = "invert"
 	FlagStdout    = "stdout"
 )
 
@@ -24,4 +25,6 @@ func (c *Bytect) RegisterFlags(cmd *cobra.Command) {
 
 func (c *Bytefmt) RegisterFlags(cmd *cobra.Command) {
 	c.Base.RegisterFlags(cmd)
+	fs := cmd.Flags()
+	fs.BoolVarP(&c.Invert, FlagInvert, "i", c.Invert, "Convert formatted bytes to raw")
 }

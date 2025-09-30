@@ -57,17 +57,27 @@ func run(cmd *cobra.Command, args []string) error {
 	for _, arg := range args {
 		arg = strings.TrimSpace(arg)
 
-		if v, encodeErr := strconv.ParseInt(arg, 10, 64); encodeErr == nil {
-			cmd.Println(encode(v))
-		} else {
-			v, decodeErr := bytefmt.Decode(arg)
-			if decodeErr != nil {
-				cmd.PrintErrln(cmd.ErrPrefix(), "bytefmt: input could not be encoded or decoded: encode: "+encodeErr.Error()+"; decode: "+decodeErr.Error())
+		if cfg.Invert {
+			v, err := bytefmt.Decode(arg)
+			if err != nil {
+				cmd.PrintErrln(cmd.ErrPrefix(), "bytefmt: "+err.Error())
 				exitErr.Code = 1
 				continue
 			}
 
 			cmd.Println(v)
+		} else {
+			v, err := strconv.ParseInt(arg, 10, 64)
+			if err != nil {
+				var err2 error
+				if v, err2 = bytefmt.Decode(arg); err2 != nil {
+					cmd.PrintErrln(cmd.ErrPrefix(), "bytefmt: "+err.Error())
+					exitErr.Code = 1
+					continue
+				}
+			}
+
+			cmd.Println(encode(v))
 		}
 	}
 

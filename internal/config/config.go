@@ -44,4 +44,5 @@ func NewBytefmt() *Bytefmt {
 
 type Bytefmt struct {
 	*Base
+	Invert bool
 }
