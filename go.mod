@@ -3,7 +3,7 @@ module gabe565.com/byte-utils
 go 1.25.1
 
 require (
-	gabe565.com/utils v0.0.0-20251001052246-9b59554481c2
+	gabe565.com/utils v0.0.0-20251001052424-e008491fcd17
 	github.com/spf13/cobra v1.10.1
 )
 
