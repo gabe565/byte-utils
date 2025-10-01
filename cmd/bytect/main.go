@@ -6,10 +6,11 @@ import (
 
 	"gabe565.com/byte-utils/internal/cmd/bytect"
 	"gabe565.com/byte-utils/internal/exiterr"
+	"gabe565.com/utils/cobrax"
 )
 
 func main() {
-	cmd := bytect.New()
+	cmd := bytect.New(cobrax.WithVersion(""))
 	if err := cmd.Execute(); err != nil {
 		var exitErr exiterr.ExitError
 		if errors.As(err, &exitErr) {
