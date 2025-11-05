@@ -1,6 +1,6 @@
 module gabe565.com/byte-utils
 
-go 1.25.1
+go 1.25.4
 
 require (
 	gabe565.com/utils v0.0.0-20251001052424-e008491fcd17
