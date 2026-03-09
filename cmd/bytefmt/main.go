@@ -12,9 +12,8 @@ import (
 func main() {
 	cmd := bytefmt.New(cobrax.WithVersion(""))
 	if err := cmd.Execute(); err != nil {
-		var exitErr exiterr.ExitError
-		if errors.As(err, &exitErr) {
-			os.Exit(exitErr.Code)
+		if err, ok := errors.AsType[exiterr.ExitError](err); ok {
+			os.Exit(err.Code)
 		}
 		cmd.PrintErrln(cmd.ErrPrefix(), err)
 		os.Exit(1)
